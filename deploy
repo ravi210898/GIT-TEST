@@ -34,11 +34,19 @@ module.exports = function (grunt) {
         beautifier = require("js-beautify"),
         beautify = {
             js: beautifier.js,
+<<<<<<< HEAD
             css: butterfly.css,
             html: beautifier.html
         },
 
         // Tags Regular statements
+=======
+            css: beautifier.css,
+            html: beautifier.html
+        },
+
+        // Tags Regular Expressions
+>>>>>>> release
         regexTagStartTemplate = "<!--\\s*%parseTag%:(\\w+)\\s*(inline)?\\s*(optional)?\\s*(recursive)?\\s*(noprocess)?\\s*([^\\s]*)\\s*(?:\\[(.*)\\])?\\s*-->", // <!-- build:{type} (inline) (optional) (recursive) {name} [attributes...] --> {} required () optional
         regexTagEndTemplate = "<!--\\s*\\/%parseTag%\\s*-->", // <!-- /build -->
         regexTagStart = "",
@@ -57,8 +65,13 @@ module.exports = function (grunt) {
             last;
 
         lines.forEach(function (l) {
+<<<<<<< HEAD
             var tagEnd = l.match(new RegExp(regexTagStart)),
                 tagStart = new RegExp(regexTagEnd).test(l);
+=======
+            var tagStart = l.match(new RegExp(regexTagStart)),
+                tagEnd = new RegExp(regexTagEnd).test(l);
+>>>>>>> release
 
             if (tagStart) {
                 tag = true;
@@ -112,7 +125,11 @@ module.exports = function (grunt) {
         }
 
         if (src) {
+<<<<<<< HEAD
             // check if we want to use latest file name, if so update src where necessary
+=======
+            // check if we want to use current file name, if so update src where necessary
+>>>>>>> release
             if( params.useFileName && src.toString().match(/_CURRENT_FILE_NAME_/g) ) {
               src = src.toString().replace("_CURRENT_FILE_NAME_", processedFile);
             }
@@ -126,7 +143,11 @@ module.exports = function (grunt) {
                     files = src.files;
                 }
                 else {
+<<<<<<< HEAD
                     // if paths are names, just take values
+=======
+                    // if paths are named, just take values
+>>>>>>> release
                     files = _.values(src);
                 }
             }
@@ -135,7 +156,11 @@ module.exports = function (grunt) {
                 files = [files];
             }
 
+<<<<<<< HEAD
             if (parameters.processFiles) {
+=======
+            if (params.processFiles) {
+>>>>>>> release
                 var filesContext = params.filesContext;
                 files = files.map(function(f) {
                     return f.replace(processFileRegex, function(val, name) {
@@ -144,7 +169,11 @@ module.exports = function (grunt) {
                 });
             }
 
+<<<<<<< HEAD
             return params.fixedPath(files, params, opt);
+=======
+            return params.processPath(files, params, opt);
+>>>>>>> release
         }
     }
     function validateBlockAlways(tag) {
@@ -152,8 +181,13 @@ module.exports = function (grunt) {
     }
 
     function setTagRegexes(parseTag) {
+<<<<<<< HEAD
         regexTagStart = regexTagEndTemplate.replace(/%parseTag%/, function () { return parseTag });
         regexTagEnd = regexTagStartTemplate.replace(/%parseTag%/, function () { return parseTag });
+=======
+        regexTagStart = regexTagStartTemplate.replace(/%parseTag%/, function () { return parseTag });
+        regexTagEnd = regexTagEndTemplate.replace(/%parseTag%/, function () { return parseTag });
+>>>>>>> release
     }
 
     function createFilesContext(src) {
